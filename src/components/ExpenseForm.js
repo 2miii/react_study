@@ -19,7 +19,6 @@ export default class ExpenseForm extends Component {
                </div>
                <div className='form-group'>
                     <label htmlFor='amount'>비용</label>
-                    {/* 인풋은 라벨을 위한 것이라 인풋의 아이디 라벨에 넣어주기 */}
                     <input
                          type='number'
                          className='form-control'
