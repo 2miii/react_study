@@ -10,6 +10,13 @@ export default class App extends Component{
     {id: 2, charge: '빵', amount: 1000},
     {id: 3, charge: '맥북', amount: 20000}
   ]
+  
+  handleDelete = (id) => {
+    // initialExpenses가 하나씩 필터(순회)하면서  expense id가 다른 것만 통과하여 새로운 배열로 반환한다.
+    const newExpense= this.initialExpenses.filter(expense => expense.id !== id)
+
+      console.log('newExpense',newExpense)
+  }
 
   render(){
     return(
@@ -23,7 +30,7 @@ export default class App extends Component{
 
           <div style = {{ width:'100%', backgroundColor:'white', padding:'1rem'}}>
             {/*Expense list 영역*/}
-            <ExpenseList initialExpenses={this.initialExpenses}/>
+            <ExpenseList initialExpenses={this.initialExpenses} handleDelete={this.handleDelete}/>
           </div>
             <div style = {{ display:'flex', justifyContent:'start', marginTop:'1rem'}}>
               <p style = {{ fontSize:'2rem'}}>

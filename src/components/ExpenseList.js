@@ -12,7 +12,9 @@ export default class ExpenseList extends Component {
               {this.props.initialExpenses.map(expense => {
                 return(
                   //  key={expense.id} 넣어주면 에러 사라짐
-                  <ExpenseItem key={expense.id} expense={expense}/>
+                  <ExpenseItem key={expense.id} expense={expense}
+                     handleDelete={this.props.handleDelete}
+                  />
                 )
               })}
           </ul>
