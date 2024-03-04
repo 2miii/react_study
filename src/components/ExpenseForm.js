@@ -3,10 +3,10 @@ import './ExpenseForm.css';
 
 // export default class ExpenseForm extends Component
 // 함수형 컴포넌트로 바꾸기! class 삭제 후  const로 정의 /render는 사용x
-const EpenseForm = () => {
+const ExpenseForm = ({ charge, handleCharge, amount, handleAmount, handleSubmit }) => {
 //   render() {
     return (
-     <form>
+     <form onSubmit={handleSubmit}> 
           <div className='form-center'>
                <div className='form-group'>
                     <label htmlFor='charge'>상품</label>
@@ -17,6 +17,9 @@ const EpenseForm = () => {
                          id='charge'
                          name='charge'
                          placeholder='예) 콜라'
+                         value={charge}
+                         onChange={handleCharge}//handleCharge의 변화값 가져오기                         
+                        // onChange={(e) => console.log(e.target.value)}//value의 변화값 확인
                     />
                </div>
                <div className='form-group'>
@@ -27,6 +30,8 @@ const EpenseForm = () => {
                          id='amount'
                          name='amount'
                          placeholder='예) 100'
+                         value={amount}
+                         onChange={handleAmount}
                     />
                </div>
           </div>
@@ -38,5 +43,5 @@ const EpenseForm = () => {
 
 }
 
-export default EpenseForm;
+export default ExpenseForm;
 //다른 컴포넌트에서 사용할수있게 
