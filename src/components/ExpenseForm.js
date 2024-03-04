@@ -1,8 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './ExpenseForm.css';
 
-export default class ExpenseForm extends Component {
-  render() {
+// export default class ExpenseForm extends Component
+// 함수형 컴포넌트로 바꾸기! class 삭제 후  const로 정의 /render는 사용x
+const EpenseForm = () => {
+//   render() {
     return (
      <form>
           <div className='form-center'>
@@ -33,5 +35,8 @@ export default class ExpenseForm extends Component {
           </button>
      </form>
     )
-  }
+
 }
+
+export default EpenseForm;
+//다른 컴포넌트에서 사용할수있게 
