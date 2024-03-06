@@ -88,7 +88,14 @@ const App = () => {
           </div>
             <div style = {{ display:'flex', justifyContent:'start', marginTop:'1rem'}}>
               <p style = {{ fontSize:'2rem'}}>
-                  총합계:
+                  총합계: 
+                  <span>
+                    {/* {expenses.reduce((acc, curr) => {
+                      console.log(acc, curr);
+                      return (acc += curr.amount);
+                      }, 0)}원 >>> 코드사용 시 += 연산자는 문자열로 수행하므로 아래 코스로 변환하여 사용*/}
+                  {expenses.reduce((acc, curr) => acc + parseInt(curr.amount), 0)}원
+                  </span>
               </p>
             </div>
           
