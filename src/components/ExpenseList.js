@@ -4,7 +4,7 @@ import ExpenseItem from './ExpenseItem';
 // rcc >클래스 자동완성
 
 //rafce > 함수형 자동완성
-const ExpenseList = ({ initialExpenses, handleDelete }) => {
+const ExpenseList = ({ initialExpenses, handleDelete, handleEdit }) => {
   return (
     <> 
     <ul className='list'>
@@ -12,7 +12,7 @@ const ExpenseList = ({ initialExpenses, handleDelete }) => {
           return(
             //  key={expense.id} 넣어주면 에러 사라짐
             <ExpenseItem key={expense.id} expense={expense}
-               handleDelete={handleDelete}
+               handleDelete={handleDelete} handleEdit={handleEdit}
             />
           )
         })}

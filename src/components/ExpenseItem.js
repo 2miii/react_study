@@ -3,16 +3,19 @@ import './ExpenseItem.css';
 import { MdEdit,MdDelete } from "react-icons/md";
 
 
-const ExpenseItem = (props) => {
+const ExpenseItem = ({expense, handleEdit, handleDelete }) => {
+
+
     return (
       <li className='item'>
         <div className='info'>
-          <span className='expense'> {props.expense.charge}</span>
-          <span className='amount'> {props.expense.amount}</span>
+          <span className='expense'> {expense.charge}</span>
+          <span className='amount'> {expense.amount}</span>
         </div>
         <div>
         <button 
           className='edit-btn'
+          onClick={() => handleEdit(expense.id)}
         >
           {/* 수정 */}
           <MdEdit />
@@ -20,7 +23,7 @@ const ExpenseItem = (props) => {
         <button
           // onClick={() => 지우는 함수 호출(`${this.props.expense.id} clicked`)}
           // onClick={() => console.log(`${this.props.expense.id} clicked`)}
-          onClick={() => props.handleDelete(props.expense.id)}
+          onClick={() => handleDelete(expense.id)}
             className='clear-btn'
         >
           {/* 삭제 */}

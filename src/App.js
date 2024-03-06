@@ -15,11 +15,23 @@ const App = () => {
     //form에서 onchage값 받아오기
     const [charge, setCharge] = useState(""); //초기값 ""
     const [amount, setAmount] = useState(0); //초기값 0
+    const [id, setId] = useState("");
+
+    // 수정
+    const [edit, setEdit] = useState(false);
 
     //팝업배너
     const [alert, setAlert] = useState({show: false});
 
-
+    //
+    const handleEdit = id =>{
+      const expense = expenses.find(item => item.id === id);
+      const{charge, amount} = expense ;
+      setCharge(charge);
+      setAmount(amount);
+      setId(id);
+      setEdit(true);
+    }
     const handleCharge = (e) => {
       setCharge(e.target.value)
     };
@@ -45,17 +57,30 @@ const App = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if(charge !== "" && amount > 0){
-      const newExpense = {id: crypto.randomUUID(), charge, amount};
-      const newExpenses = [...expenses,newExpense]
 
-      setExpenses(newExpenses);
+      // edit을 수정했을때
+      if(edit){
+        const newExpenses = expenses.map(item => {
+          return item.id === id ? {...item, charge, amount}: item ;
+        });
+        setExpenses(newExpenses);
+        setEdit(false);
+        handleAlert({type:"success", text:"아이템이 수정되었습니다."});
+
+      }else{
+        const newExpense = {id: crypto.randomUUID(), charge, amount};
+        const newExpenses = [...expenses,newExpense]
+  
+        setExpenses(newExpenses);
+        
+        handleAlert({type:"success", text:"아이템이 생성되었습니다."})
+      }
       setCharge("");
       setAmount(0);
-      handleAlert({type:"success", text:"아이템이 생성되었습니다."})
 
     }else{
       handleAlert({type:"danger", text:"charge는 빈 값일 수 없으며 amount 값은 0보다 커야합니다."})
-      console.error('error');
+      // console.error('error');
     }
 
   };
@@ -76,7 +101,7 @@ const App = () => {
           <h1>장바구니</h1>
           <div style = {{ width:'100%', backgroundColor:'white', padding:'1rem'}}>
             {/*Expense Form*/}
-            <ExpenseForm  charge={charge} handleCharge ={handleCharge} 
+            <ExpenseForm  edit={edit} charge={charge} handleCharge ={handleCharge} 
                           amount={amount}  handleAmount={handleAmount}
                           handleSubmit={handleSubmit}
             /> 
@@ -84,7 +109,7 @@ const App = () => {
 
           <div style = {{ width:'100%', backgroundColor:'white', padding:'1rem'}}>
             {/* Expense List */}
-            <ExpenseList initialExpenses={expenses} handleDelete={handleDelete}/>
+            <ExpenseList handleEdit={handleEdit} initialExpenses={expenses} handleDelete={handleDelete}/>
           </div>
             <div style = {{ display:'flex', justifyContent:'start', marginTop:'1rem'}}>
               <p style = {{ fontSize:'2rem'}}>
