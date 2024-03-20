@@ -53,6 +53,12 @@ const App = () => {
     handleAlert({type:"danger", text:"아이템이 삭제되었습니다."})
   };
 
+
+  //삭제 기능
+  const clearItems = () => {
+    setExpenses([]); //모두 비움
+  }
+
 //submit 버튼을 눌렀을 때 이벤트
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -109,7 +115,7 @@ const App = () => {
 
           <div style = {{ width:'100%', backgroundColor:'white', padding:'1rem'}}>
             {/* Expense List */}
-            <ExpenseList handleEdit={handleEdit} initialExpenses={expenses} handleDelete={handleDelete}/>
+            <ExpenseList expenses={expenses} clearItems={clearItems} handleEdit={handleEdit} initialExpenses={expenses} handleDelete={handleDelete}/>
           </div>
             <div style = {{ display:'flex', justifyContent:'start', marginTop:'1rem'}}>
               <p style = {{ fontSize:'2rem'}}>

@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react';
 import './ExpenseList.css';
 import ExpenseItem from './ExpenseItem';
-// rcc >클래스 자동완성
+import { MdDelete } from "react-icons/md";
+
 
 //rafce > 함수형 자동완성
-const ExpenseList = ({ initialExpenses, handleDelete, handleEdit }) => {
+const ExpenseList = ({ expenses, initialExpenses, handleDelete, handleEdit, clearItems }) => {
   return (
     <> 
     <ul className='list'>
@@ -17,10 +18,15 @@ const ExpenseList = ({ initialExpenses, handleDelete, handleEdit }) => {
           )
         })}
     </ul>
-    <button className='btn'>
-      목록 지우기
-    </button>
-</>
+    {expenses.length > 0 ? 
+      <button className='btn' onClick={clearItems}>
+         목록 지우기
+         <MdDelete className="btn-icon"/>
+      </button>
+      : null  
+    }
+   
+  </>
   )
 }
 
